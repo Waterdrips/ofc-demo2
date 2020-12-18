@@ -1,0 +1,14 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  images:
+    lang: golang-middleware
+    handler: ./images
+    image: images:latest
+    secrets:
+      - s3
+    environment:
+      s3_tls: false
+      s3_url: minio.openfaas.svc.cluster.local:9000
